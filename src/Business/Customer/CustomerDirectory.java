@@ -13,14 +13,26 @@ import java.util.ArrayList;
  */
 public class CustomerDirectory {
     private ArrayList<Customer> customers;
-    private Customer customer;
 
     public CustomerDirectory() {
         customers = new ArrayList<Customer>();
     }
     
-    public void createCustomer(Customer customer){
+    public Customer createCustomer(){
+        Customer customer = new Customer();
+        customers.add(customer);
+        return customer;
+    }
+    
+    public void addCustomer(Customer customer){
         customers.add(customer);
     }
     
+    public ArrayList<Customer> getCustomerDirectory(){
+        return customers;
+    }
+    
+    public void deleteCustomer(Customer customer){
+        customers.remove(customer);
+    }
 }

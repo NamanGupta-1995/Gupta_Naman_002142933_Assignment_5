@@ -6,15 +6,22 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.CustomerDirectory;
+import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
 
 import Business.Organization;
+import Business.Restaurant.RestaurantDirectory;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import userinterface.CustomerRole.AddCustomerJPanel;
+import userinterface.CustomerRole.ManageCustomerJPanel;
+import userinterface.DeliveryManRole.AddDeliverManJPanel;
+import userinterface.DeliveryManRole.ManageDeliveryManJPanel;
+import userinterface.RestaurantAdminRole.AddRestaurantJPanel;
+import userinterface.RestaurantAdminRole.ManageRestaurantJPanel;
 
 /**
  *
@@ -28,6 +35,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     CustomerDirectory customerDirectory;
+    RestaurantDirectory restaurantDirectory;
+    DeliveryManDirectory deliveryManDirectory;
     
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
@@ -35,6 +44,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         this.ecosystem=ecosystem;
         if(this.ecosystem.getCustomerDirectory() == null){
             this.customerDirectory = new CustomerDirectory();
+        }
+        if(this.ecosystem.getRestaurantDirectory()== null){
+            this.restaurantDirectory = new RestaurantDirectory();
+        }
+        if(this.ecosystem.getDeliveryManDirectory() == null){
+            this.deliveryManDirectory = new DeliveryManDirectory();
         }
         populateTree();
     }
@@ -127,8 +142,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnAddRestaurant.setText("Add Restaurant");
+        btnAddRestaurant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddRestaurantActionPerformed(evt);
+            }
+        });
 
         btnAddDeliveryMan.setText("Add Deliveryman");
+        btnAddDeliveryMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDeliveryManActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,14 +210,28 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
        
+        ManageCustomerJPanel manageCustomerCustomer = new ManageCustomerJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getCustomerDirectory() != null?this.ecosystem.getCustomerDirectory(): this.customerDirectory);
+
+        userProcessContainer.add("WorkAreaJPanel", manageCustomerCustomer);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
     }//GEN-LAST:event_btnManageNetworkActionPerformed
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
-        
+        ManageRestaurantJPanel manageRestaurant = new ManageRestaurantJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getRestaurantDirectory()!= null?this.ecosystem.getRestaurantDirectory(): this.restaurantDirectory);
+
+        userProcessContainer.add("WorkAreaJPanel", manageRestaurant);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
     private void btnManageAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAdminActionPerformed
-       
+
+        ManageDeliveryManJPanel manageDeliveryMan = new ManageDeliveryManJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getDeliveryManDirectory()!= null?this.ecosystem.getDeliveryManDirectory(): this.deliveryManDirectory);
+
+        userProcessContainer.add("WorkAreaJPanel", manageDeliveryMan);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
     }//GEN-LAST:event_btnManageAdminActionPerformed
 
     private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
@@ -206,13 +245,32 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         // TODO add your handling code here:
         
-        AddCustomerJPanel addCustomer = new AddCustomerJPanel(userProcessContainer, this.ecosystem, this.customerDirectory);
+        AddCustomerJPanel addCustomer = new AddCustomerJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getCustomerDirectory() != null?this.ecosystem.getCustomerDirectory(): this.customerDirectory);
 
         userProcessContainer.add("WorkAreaJPanel", addCustomer);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer); 
        
     }//GEN-LAST:event_btnAddCustomerActionPerformed
+
+    private void btnAddRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRestaurantActionPerformed
+        // TODO add your handling code here:
+        
+        AddRestaurantJPanel addRestaurant = new AddRestaurantJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getRestaurantDirectory() != null?this.ecosystem.getRestaurantDirectory(): this.restaurantDirectory);
+
+        userProcessContainer.add("WorkAreaJPanel", addRestaurant);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_btnAddRestaurantActionPerformed
+
+    private void btnAddDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDeliveryManActionPerformed
+        // TODO add your handling code here:
+        AddDeliverManJPanel addDeliveryMan = new AddDeliverManJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getDeliveryManDirectory() != null?this.ecosystem.getDeliveryManDirectory(): this.deliveryManDirectory);
+
+        userProcessContainer.add("WorkAreaJPanel", addDeliveryMan);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_btnAddDeliveryManActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

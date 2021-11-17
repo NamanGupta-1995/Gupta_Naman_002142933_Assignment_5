@@ -65,7 +65,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         logoutJButton.setText("Logout");
-        logoutJButton.setEnabled(false);
         logoutJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutJButtonActionPerformed(evt);
@@ -124,13 +123,13 @@ public class MainJFrame extends javax.swing.JFrame {
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
         // Get user name
        UserAccount user = system.getUserAccountDirectory().authenticateUser(userNameJTextField.getText(), passwordField.getText());
-       JPanel selectedUser = user.getRole().createWorkArea(container, user, system);
        
        if(user == null){
            JOptionPane.showMessageDialog(this, "Invalid User");
            return;
        }
        else{
+           JPanel selectedUser = user.getRole().createWorkArea(container, user, system);
            container.add("WorkAreaJPanel", selectedUser);
            CardLayout layout = (CardLayout) container.getLayout();
            layout.next(container); 
@@ -138,7 +137,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
-        logoutJButton.setEnabled(false);
+        //logoutJButton.setEnabled(false);
         userNameJTextField.setEnabled(true);
         passwordField.setEnabled(true);
         loginJButton.setEnabled(true);

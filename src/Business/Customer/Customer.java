@@ -5,6 +5,8 @@
  */
 package Business.Customer;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author harold
@@ -13,6 +15,16 @@ public class Customer {
     private String name;
     private String address;
     private long contactNumber;
+    private String password;
+    
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getEmailId() {
         return emailId;
@@ -46,4 +58,11 @@ public class Customer {
     public void setContactNumber(long contactNumber) {
         this.contactNumber = contactNumber;
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.name;
+    }
+    
 }

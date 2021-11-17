@@ -9,6 +9,8 @@ package userinterface.CustomerRole;
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
 import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Role.CustomerRole;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -57,6 +59,8 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         lblContactError = new javax.swing.JLabel();
         lblEmailError = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JTextField();
 
         lblAddCustomer.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblAddCustomer.setText("ADD CUSTOMER");
@@ -104,6 +108,10 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblPassword.setText("Password:");
+
+        txtPassword.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,9 +122,12 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblCustomerEmail)
-                            .addComponent(lblCustomerContact))
+                            .addComponent(lblCustomerContact)
+                            .addComponent(lblPassword))
                         .addGap(26, 26, 26)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -147,7 +158,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                     .addComponent(lblEmailError))
                 .addContainerGap(286, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(358, 358, 358)
+                .addGap(360, 360, 360)
                 .addComponent(btnAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -178,9 +189,13 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                     .addComponent(lblCustomerEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEmailError))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPassword)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAddCustomer)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,15 +205,19 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         // TODO add your handling code here:
+        Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee("RRH");
+        
         Customer customer = new Customer();
         customer.setName(txtName.getText());
         customer.setAddress(txtAddress.getText());
         customer.setContactNumber(Long.parseLong(txtContact.getText()));
         customer.setEmailId(txtEmail.getText());
-        this.customerDirectory.createCustomer(customer);
-        this.ecosystem.setCustomerDirectory(customerDirectory);
-        this.ecosystem.getCustomerDirectory().createCustomer(customer);
+        customer.setPassword(txtPassword.getText());
         
+        customerDirectory.addCustomer(customer);
+        
+        this.ecosystem.setCustomerDirectory(customerDirectory);
+        this.ecosystem.getUserAccountDirectory().createUserAccount(txtEmail.getText(), txtPassword.getText(), employee, new CustomerRole());
         JOptionPane.showMessageDialog(this, "Customer Added", "Update", JOptionPane.INFORMATION_MESSAGE);
         clearFields();
     }//GEN-LAST:event_btnAddCustomerActionPerformed
@@ -218,6 +237,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         txtAddress.setText("");
         txtContact.setText("");
         txtEmail.setText("");
+        txtPassword.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -232,10 +252,12 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblCustomerName;
     private javax.swing.JLabel lblEmailError;
     private javax.swing.JLabel lblNameError;
+    private javax.swing.JLabel lblPassword;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtContact;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 
 }
