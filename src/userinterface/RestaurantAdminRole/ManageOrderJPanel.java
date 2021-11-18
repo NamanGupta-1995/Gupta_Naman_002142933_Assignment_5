@@ -5,9 +5,11 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,10 +40,15 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(WorkRequest request : restaurant.getUserAccount().getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[3];
+            if(request.getReceiver() == null){
+                restaurant.getUserAccount().getWorkQueue().getWorkRequestList().remove(request);
+                continue;
+            }
+            Object[] row = new Object[4];
             row[0] = request.getMessage();
-            row[1] = request.getSender().getEmployee().getName();
-            row[2] = request.getStatus();
+            row[1] = request.getReceiver().getUsername();
+            row[2] = request.getSender().getUsername();
+            row[3] = request.getStatus();
             
             model.addRow(row);
         }
@@ -65,20 +72,20 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
 
         orderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status"
+                "Message", "Sender", "Receiver", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -97,6 +104,11 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         lblTitle.setText("MANAGE YOUR ORDERS HERE");
 
         btnAssignDeliveryMan.setText("ASSIGN DELIVERY MAN");
+        btnAssignDeliveryMan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignDeliveryManActionPerformed(evt);
+            }
+        });
 
         lblAssign.setText("ASSIGN A DELIVERY MAN ONCE THE ORDER IS READY TO DELIVER >>>>>>");
 
@@ -142,6 +154,31 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                     .addContainerGap(279, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAssignDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignDeliveryManActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = orderTable.getSelectedRow();
+        if (selectedRow < 0){
+            return;
+        }
+        
+        Customer selectedCustomer = new Customer();
+        
+        String name = (String)orderTable.getValueAt(selectedRow, 2);
+        
+        for(Customer customer : ecoSystem.getCustomerDirectory().getCustomerDirectory()) {
+           if(customer.getUserAccount().getUsername().equals(name)) {
+               selectedCustomer = customer;
+           }
+       }
+        
+        
+        AssignDeliveryJPanel back = new AssignDeliveryJPanel(userProcessContainer, this.ecoSystem, this.restaurant, selectedCustomer);
+        userProcessContainer.add("WorkAreaJPanel", back);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_btnAssignDeliveryManActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

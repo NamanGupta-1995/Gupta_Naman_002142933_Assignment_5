@@ -228,6 +228,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         request.setMessage(message);
         request.setSender(account);
         request.setStatus("Ordered");
+        request.setReceiver(restaurant.getUserAccount());
 
         account.getWorkQueue().getWorkRequestList().add(request);
         restaurant.getUserAccount().getWorkQueue().getWorkRequestList().add(request);

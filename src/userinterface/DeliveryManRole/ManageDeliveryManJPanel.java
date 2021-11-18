@@ -51,8 +51,8 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         if(deliveryManList.getDeliveryManDirectory().isEmpty())
         {
-            JOptionPane.showMessageDialog(this, "No Customer Please add"
-                    + "Customer", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No Delivery Man Please add"
+                    + "Delivery Man", "Warning", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         for (DeliveryMan deliveryMan : deliveryManList.getDeliveryManDirectory()) {

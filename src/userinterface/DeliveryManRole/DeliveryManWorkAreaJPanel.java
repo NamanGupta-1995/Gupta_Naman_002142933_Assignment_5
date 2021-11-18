@@ -4,6 +4,8 @@
  */
 package userinterface.DeliveryManRole;
 
+import Business.Customer.Customer;
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 
 import Business.UserAccount.UserAccount;
@@ -19,26 +21,35 @@ import javax.swing.table.DefaultTableModel;
 public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private EcoSystem business;
+    private EcoSystem ecoSystem;
     private UserAccount userAccount;
     
     
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecoSystem) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
-        this.business = business;
-      
-        
-        populateTable();
+        this.ecoSystem = ecoSystem;
+        for(DeliveryMan dm : ecoSystem.getDeliveryManDirectory().getDeliveryManDirectory()){
+             if(dm.getEmail().equals(account.getUsername())) {
+                  populateTable(dm.getCustomer());
+             }
+         }
     }
     
-    public void populateTable(){
-        
+    public void populateTable(Customer customer){
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[3];
+        row[0] = customer.getName();
+        row[1] = customer.getAddress();
+        //row[2] = this.ecoSystem.getWorkQueue().getWorkRequestList().
+        model.addRow(row);
+
     }
 
     /**
@@ -130,7 +141,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
         request.setReceiver(userAccount);
         request.setStatus("Pending");
-        populateTable();
+        //populateTable();
         
     }//GEN-LAST:event_assignJButtonActionPerformed
 
@@ -141,7 +152,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
-        populateTable();
+        //populateTable();
     }//GEN-LAST:event_refreshJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
