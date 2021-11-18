@@ -10,6 +10,7 @@ import Business.Employee.Employee;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.Role.AdminRole;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,11 +28,13 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     RestaurantDirectory restaurantDirectory;
+    UserAccount userAccount;
     
-    public AddRestaurantJPanel(JPanel userProcessContainer, EcoSystem ecosystem, RestaurantDirectory restaurantDirectory) {
+    public AddRestaurantJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount userAccount, RestaurantDirectory restaurantDirectory) {
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.restaurantDirectory = restaurantDirectory;
+        this.userAccount = userAccount;
         initComponents();
     }
 
@@ -162,7 +165,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee("RRH");
+        Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee(txtName.getText());
         
         Restaurant restaurant = new Restaurant();
         restaurant.setName(txtName.getText());
@@ -171,10 +174,11 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         restaurant.setEmail(txtEmail.getText());
         restaurant.setPassword(txtPassword.getText());
         
+
+        this.userAccount = this.ecosystem.getUserAccountDirectory().createUserAccount(txtEmail.getText(), txtPassword.getText(), employee, new AdminRole());
+        restaurant.setUserAccount(this.userAccount);
         restaurantDirectory.addRestaurant(restaurant);
-        
         this.ecosystem.setRestaurantDirectory(restaurantDirectory);
-        this.ecosystem.getUserAccountDirectory().createUserAccount(txtEmail.getText(), txtPassword.getText(), employee, new AdminRole());
         JOptionPane.showMessageDialog(this, "Restaurant Added", "Update", JOptionPane.INFORMATION_MESSAGE);
         clearFields();
     }//GEN-LAST:event_btnAddActionPerformed

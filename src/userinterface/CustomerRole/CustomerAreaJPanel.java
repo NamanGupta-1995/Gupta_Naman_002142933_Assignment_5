@@ -233,7 +233,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         }
         
         DefaultTableModel model = (DefaultTableModel) tblRestaurant.getModel();
+        
         Restaurant selectedRestaurant = (Restaurant) model.getValueAt(selectedRowIndex, 0);
+        
+        for (Restaurant restaurant : ecosystem.getRestaurantDirectory().getRestaurantDirectory()){
+            if(restaurant.getName().equals(selectedRestaurant.getName())) {
+                selectedRestaurant = restaurant;
+            }
+        }
         
         PlaceOrderByCustomerJPanel back = new PlaceOrderByCustomerJPanel(userProcessContainer, this.ecosystem, selectedRestaurant, this.userAccount);
 

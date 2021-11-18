@@ -5,6 +5,8 @@
  */
 package Business.DeliveryMan;
 
+import Business.Customer.Customer;
+
 /**
  *
  * @author harold
@@ -15,6 +17,16 @@ public class DeliveryMan {
     public long contactNumber;
     public String email;
     public String password;
+    Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
 
     public String getName() {
         return name;

@@ -11,6 +11,7 @@ import Business.Customer.CustomerDirectory;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Role.CustomerRole;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,11 +28,13 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
     EcoSystem ecosystem;
     CustomerDirectory customerDirectory;
     JPanel userProcessContainer;
+    UserAccount userAccount;
     
-    public AddCustomerJPanel(JPanel userProcessContainer, EcoSystem ecosystem, CustomerDirectory customerDirectory) {
+    public AddCustomerJPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount userAccount, CustomerDirectory customerDirectory) {
         this.userProcessContainer = userProcessContainer;
         this.customerDirectory = customerDirectory;
         this.ecosystem = ecosystem;
+        this.userAccount = userAccount;
         initComponents();
     }
 
@@ -205,7 +208,7 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         // TODO add your handling code here:
-        Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee("RRH");
+        Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee(txtName.getText());
         
         Customer customer = new Customer();
         customer.setName(txtName.getText());
@@ -214,10 +217,12 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         customer.setEmailId(txtEmail.getText());
         customer.setPassword(txtPassword.getText());
         
+
+        this.userAccount = this.ecosystem.getUserAccountDirectory().createUserAccount(txtEmail.getText(), txtPassword.getText(), employee, new CustomerRole());
+        customer.setUserAccount(userAccount);
         customerDirectory.addCustomer(customer);
         
         this.ecosystem.setCustomerDirectory(customerDirectory);
-        this.ecosystem.getUserAccountDirectory().createUserAccount(txtEmail.getText(), txtPassword.getText(), employee, new CustomerRole());
         JOptionPane.showMessageDialog(this, "Customer Added", "Update", JOptionPane.INFORMATION_MESSAGE);
         clearFields();
     }//GEN-LAST:event_btnAddCustomerActionPerformed

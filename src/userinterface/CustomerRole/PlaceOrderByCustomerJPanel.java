@@ -8,8 +8,11 @@ package userinterface.CustomerRole;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrderRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +38,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.restaurant = restaurant;
         this.account = account;
+        this.order = new ArrayList<String>();
         initComponents();
         populateMenuTable(this.restaurant.getMenuList());
     }
@@ -80,6 +84,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         btnAddToCart = new javax.swing.JButton();
         btnPlaceOrder = new javax.swing.JButton();
         lblCartTotal = new javax.swing.JLabel();
+        txtOrderMessage = new javax.swing.JTextField();
 
         lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblTitle.setText("WELCOME TO THE RESTAURANT");
@@ -125,8 +130,15 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         });
 
         btnPlaceOrder.setText("PLACE ORDER");
+        btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlaceOrderActionPerformed(evt);
+            }
+        });
 
         lblCartTotal.setText("jLabel1");
+
+        txtOrderMessage.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,6 +157,8 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
                             .addComponent(jScrollPane2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtOrderMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(142, 142, 142)
                                 .addComponent(lblCartTotal)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnPlaceOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -167,11 +181,16 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
                 .addComponent(btnAddToCart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPlaceOrder)
-                    .addComponent(lblCartTotal))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPlaceOrder)
+                            .addComponent(lblCartTotal)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(txtOrderMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -201,6 +220,19 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         populateOrderTable(order);
 
     }//GEN-LAST:event_btnAddToCartActionPerformed
+
+    private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
+        // TODO add your handling code here:
+        OrderRequest request = new OrderRequest();
+        String message = txtOrderMessage.getText();
+        request.setMessage(message);
+        request.setSender(account);
+        request.setStatus("Ordered");
+
+        account.getWorkQueue().getWorkRequestList().add(request);
+        restaurant.getUserAccount().getWorkQueue().getWorkRequestList().add(request);
+        JOptionPane.showMessageDialog(null, "Order Placed Successfully");
+    }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     
     public void populateOrderTable(ArrayList<String> item){
@@ -233,5 +265,6 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblMenu;
     private javax.swing.JTable tblOrder;
+    private javax.swing.JTextField txtOrderMessage;
     // End of variables declaration//GEN-END:variables
 }

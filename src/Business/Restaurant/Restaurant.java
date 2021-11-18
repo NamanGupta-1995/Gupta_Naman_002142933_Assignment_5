@@ -5,6 +5,7 @@
  */
 package Business.Restaurant;
 
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,15 @@ public class Restaurant {
     private String email;
     private String password;
     private ArrayList<String> menuList;
+    private UserAccount userAccount;
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 
     public ArrayList<String> getMenuList() {
         return menuList;

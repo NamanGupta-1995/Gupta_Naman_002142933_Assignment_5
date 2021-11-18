@@ -11,6 +11,7 @@ import Business.EcoSystem;
 
 import Business.Organization;
 import Business.Restaurant.RestaurantDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -37,6 +38,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     CustomerDirectory customerDirectory;
     RestaurantDirectory restaurantDirectory;
     DeliveryManDirectory deliveryManDirectory;
+    UserAccount userAccount;
     
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
@@ -245,7 +247,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         // TODO add your handling code here:
         
-        AddCustomerJPanel addCustomer = new AddCustomerJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getCustomerDirectory() != null?this.ecosystem.getCustomerDirectory(): this.customerDirectory);
+        AddCustomerJPanel addCustomer = new AddCustomerJPanel(userProcessContainer, this.ecosystem, userAccount, this.ecosystem.getCustomerDirectory() != null?this.ecosystem.getCustomerDirectory(): this.customerDirectory);
 
         userProcessContainer.add("WorkAreaJPanel", addCustomer);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -256,7 +258,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private void btnAddRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRestaurantActionPerformed
         // TODO add your handling code here:
         
-        AddRestaurantJPanel addRestaurant = new AddRestaurantJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getRestaurantDirectory() != null?this.ecosystem.getRestaurantDirectory(): this.restaurantDirectory);
+        AddRestaurantJPanel addRestaurant = new AddRestaurantJPanel(userProcessContainer, this.ecosystem, userAccount, this.ecosystem.getRestaurantDirectory() != null?this.ecosystem.getRestaurantDirectory(): this.restaurantDirectory);
 
         userProcessContainer.add("WorkAreaJPanel", addRestaurant);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

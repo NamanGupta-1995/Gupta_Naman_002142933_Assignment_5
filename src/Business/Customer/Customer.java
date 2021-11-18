@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,17 @@ public class Customer {
     private String address;
     private long contactNumber;
     private String password;
+    private String emailId;
+    UserAccount userAccount;
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+    
     
 
     public String getPassword() {
@@ -33,7 +45,7 @@ public class Customer {
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
-    private String emailId;
+    
 
     public String getName() {
         return name;
