@@ -4,6 +4,7 @@
  */
 package Business.WorkQueue;
 
+import Business.DeliveryMan.DeliveryMan;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -16,10 +17,20 @@ public abstract class WorkRequest {
     private String message;
     private UserAccount sender;
     private UserAccount receiver;
+    
     private String status;
+    private DeliveryMan deliveryMan;
     private Date requestDate;
     private Date resolveDate;
     private String orderID;
+
+    public DeliveryMan getDeliveryMan() {
+        return deliveryMan;
+    }
+
+    public void setDeliveryMan(DeliveryMan deliveryMan) {
+        this.deliveryMan = deliveryMan;
+    }
 
     public String getOrderID() {
         return orderID;

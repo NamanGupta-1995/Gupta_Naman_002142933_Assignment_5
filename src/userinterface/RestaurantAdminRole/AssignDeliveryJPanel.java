@@ -9,6 +9,8 @@ import Business.Customer.Customer;
 import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrderRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -28,6 +30,7 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
     EcoSystem ecoSystem;
     Restaurant restaurant;
     Customer customer;
+    UserAccount userAccount;
     
     public AssignDeliveryJPanel(JPanel userProcessContainer, EcoSystem ecoSystem,  Restaurant restaurant, Customer customer) {
         initComponents();
@@ -124,7 +127,7 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
 
     
     private void populateDeliveryManTable(){
-               DefaultTableModel model = (DefaultTableModel) deliveryStaffTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) deliveryStaffTable.getModel();
         model.setRowCount(0);
         for (DeliveryMan deliveryMan : ecoSystem.getDeliveryManDirectory().getDeliveryManDirectory()) {
             Object[] row = new Object[model.getColumnCount()];
@@ -135,7 +138,7 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         
-        ManageOrderJPanel back = new ManageOrderJPanel(userProcessContainer, this.ecoSystem, this.restaurant);
+        ManageOrderJPanel back = new ManageOrderJPanel(userProcessContainer, this.ecoSystem, this.restaurant, this.userAccount);
 
         userProcessContainer.add("WorkAreaJPanel", back);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -151,10 +154,18 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select an order to assign");
             return;
         }
+        
         DeliveryMan deliveryMan = (DeliveryMan)deliveryStaffTable.getValueAt(selectedRow, 0);
         deliveryMan.setCustomer(this.customer);
         for(WorkRequest wr : this.customer.getUserAccount().getWorkQueue().getWorkRequestList()){
+            if(wr.getStatus().equals("Ordered")){
                 wr.setStatus("Assigned");
+                deliveryMan.setOrderRequest((OrderRequest) wr);
+                wr.setDeliveryMan(deliveryMan);
+                break;
+                
+            }
+
         };
         JOptionPane.showMessageDialog(null, "Order Assigned");
     }//GEN-LAST:event_btnAssignDeliveryActionPerformed

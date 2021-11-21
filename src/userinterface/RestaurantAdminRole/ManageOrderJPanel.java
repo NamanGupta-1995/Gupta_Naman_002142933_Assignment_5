@@ -8,8 +8,10 @@ package userinterface.RestaurantAdminRole;
 import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,11 +27,13 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecoSystem;
     Restaurant restaurant;
+    UserAccount userAccount;
     
-    public ManageOrderJPanel(JPanel userProcessContainer, EcoSystem ecoSystem,  Restaurant restaurant) {
+    public ManageOrderJPanel(JPanel userProcessContainer, EcoSystem ecoSystem,  Restaurant restaurant, UserAccount userAccount) {
         this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;
         this.restaurant = restaurant;
+        this.userAccount = userAccount;
         initComponents();
         populateTable();
     }
@@ -99,6 +103,11 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(orderTable);
 
         btnBack.setText("<< BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblTitle.setText("MANAGE YOUR ORDERS HERE");
@@ -160,6 +169,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         
         int selectedRow = orderTable.getSelectedRow();
         if (selectedRow < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to assign.");
             return;
         }
         
@@ -168,17 +178,39 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         String name = (String)orderTable.getValueAt(selectedRow, 2);
         
         for(Customer customer : ecoSystem.getCustomerDirectory().getCustomerDirectory()) {
-           if(customer.getUserAccount().getUsername().equals(name)) {
+            if(customer.getUserAccount()!=null){
+               if(customer.getUserAccount().getUsername().equals(name) ) {
                selectedCustomer = customer;
+               break;
            }
+            }
+            else{
+               if(customer.getName().equals(name)) {
+               selectedCustomer = customer;
+               break;
+           }
+            }
        }
-        
+        String x = (String)orderTable.getValueAt(selectedRow, 3);
+        if( !x.equals("Ordered")){
+            JOptionPane.showMessageDialog(this, "This order is already assigned or delivered.");
+            return;
+        }
         
         AssignDeliveryJPanel back = new AssignDeliveryJPanel(userProcessContainer, this.ecoSystem, this.restaurant, selectedCustomer);
         userProcessContainer.add("WorkAreaJPanel", back);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer); 
     }//GEN-LAST:event_btnAssignDeliveryManActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        AdminWorkAreaJPanel back = new AdminWorkAreaJPanel(userProcessContainer, this.userAccount!=null?this.userAccount:this.restaurant.getUserAccount(),  this.ecoSystem);
+
+        userProcessContainer.add("WorkAreaJPanel", back);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

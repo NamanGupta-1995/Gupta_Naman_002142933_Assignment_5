@@ -9,10 +9,12 @@ import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -28,14 +30,15 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     RestaurantDirectory restaurantDirectory;
     Restaurant restaurant;
     ArrayList<String> menulist;
+    UserAccount userAccount;
     
-    public ManageMenuJPanel(JPanel userProcessContainer, EcoSystem ecosystem, RestaurantDirectory restaurantDirectory, Restaurant restaurant) {
+    public ManageMenuJPanel(JPanel userProcessContainer, EcoSystem ecosystem, RestaurantDirectory restaurantDirectory, Restaurant restaurant, UserAccount userAccount) {
         initComponents();
         this.restaurantDirectory = restaurantDirectory;
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.restaurant = restaurant;
-        
+        this.userAccount = userAccount;
         if (restaurant.getMenuList()!= null && !restaurant.getMenuList().isEmpty()) {
             this.menulist = restaurant.getMenuList();
                     popularRestaurantMenuTable();
@@ -71,6 +74,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMenu = new javax.swing.JTable();
         btnDeleteItem = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblTitle.setText("MANAGE YOUR RESTAURANT MENU");
@@ -106,6 +110,13 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnBack.setText("<< BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,20 +138,23 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblTitle)
-                        .addGap(291, 291, 291))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnDeleteItem)
-                        .addGap(391, 391, 391))))
+                .addComponent(btnDeleteItem)
+                .addGap(391, 391, 391))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitle)
+                .addGap(291, 291, 291))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(lblTitle)
-                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle)
+                    .addComponent(btnBack))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,9 +196,19 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         popularRestaurantMenuTable();
     }//GEN-LAST:event_btnDeleteItemActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        AdminWorkAreaJPanel back = new AdminWorkAreaJPanel(userProcessContainer, this.userAccount,  this.ecosystem);
+
+        userProcessContainer.add("WorkAreaJPanel", back);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDeleteItem;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblName;

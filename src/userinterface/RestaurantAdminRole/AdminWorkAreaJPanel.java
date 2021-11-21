@@ -99,7 +99,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
 
-        ManageMenuJPanel addRestaurant = new ManageMenuJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getRestaurantDirectory(), this.restaurant);
+        ManageMenuJPanel addRestaurant = new ManageMenuJPanel(userProcessContainer, this.ecosystem, this.ecosystem.getRestaurantDirectory(), this.restaurant, this.account);
 
         userProcessContainer.add("WorkAreaJPanel", addRestaurant);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -108,7 +108,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrdersActionPerformed
 
-        ManageOrderJPanel manageOrder = new ManageOrderJPanel(userProcessContainer, this.ecosystem, this.restaurant);
+        ManageOrderJPanel manageOrder = new ManageOrderJPanel(userProcessContainer, this.ecosystem, this.restaurant, this.account);
 
         userProcessContainer.add("WorkAreaJPanel", manageOrder);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

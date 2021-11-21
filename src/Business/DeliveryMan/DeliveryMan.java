@@ -6,6 +6,7 @@
 package Business.DeliveryMan;
 
 import Business.Customer.Customer;
+import Business.WorkQueue.OrderRequest;
 
 /**
  *
@@ -18,7 +19,17 @@ public class DeliveryMan {
     public String email;
     public String password;
     Customer customer;
+    OrderRequest orderRequest;
 
+    public OrderRequest getOrderRequest() {
+        return orderRequest;
+    }
+
+    public void setOrderRequest(OrderRequest orderRequest) {
+        this.orderRequest = orderRequest;
+    }
+    
+    
     public Customer getCustomer() {
         return customer;
     }
