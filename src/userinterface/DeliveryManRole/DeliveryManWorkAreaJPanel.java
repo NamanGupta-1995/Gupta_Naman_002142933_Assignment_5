@@ -70,9 +70,12 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         btnDelivered = new javax.swing.JButton();
         btnAcceptOrder = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblDeliveryMan.setBackground(new java.awt.Color(255, 255, 204));
         tblDeliveryMan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -107,31 +110,38 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             tblDeliveryMan.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 770, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 770, 200));
 
+        btnDelivered.setBackground(new java.awt.Color(255, 255, 204));
         btnDelivered.setText("Mark Delivered");
         btnDelivered.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeliveredActionPerformed(evt);
             }
         });
-        add(btnDelivered, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 190, -1, -1));
+        add(btnDelivered, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 300, -1, -1));
 
+        btnAcceptOrder.setBackground(new java.awt.Color(255, 255, 204));
         btnAcceptOrder.setText("Accept Order");
         btnAcceptOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptOrderActionPerformed(evt);
             }
         });
-        add(btnAcceptOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, -1, -1));
+        add(btnAcceptOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
 
+        refreshJButton.setBackground(new java.awt.Color(255, 255, 204));
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshJButtonActionPerformed(evt);
             }
         });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, -1, -1));
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(481, 300, 130, -1));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setText("YOU CAN MANAGE ORDERS ASSIGNED TO DO HERE:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveredActionPerformed
@@ -190,6 +200,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptOrder;
     private javax.swing.JButton btnDelivered;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshJButton;
     private javax.swing.JTable tblDeliveryMan;

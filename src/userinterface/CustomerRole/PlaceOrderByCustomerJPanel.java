@@ -83,12 +83,15 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         tblOrder = new javax.swing.JTable();
         btnAddToCart = new javax.swing.JButton();
         btnPlaceOrder = new javax.swing.JButton();
-        lblCartTotal = new javax.swing.JLabel();
         txtOrderMessage = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(204, 255, 204));
 
         lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblTitle.setText("WELCOME TO THE RESTAURANT");
 
+        tblMenu.setBackground(new java.awt.Color(255, 255, 204));
         tblMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -102,6 +105,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblMenu);
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 204));
         btnBack.setText("<< BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +113,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
+        tblOrder.setBackground(new java.awt.Color(255, 255, 204));
         tblOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -122,6 +127,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblOrder);
 
+        btnAddToCart.setBackground(new java.awt.Color(255, 255, 204));
         btnAddToCart.setText("ADD TO CART");
         btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +135,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnPlaceOrder.setBackground(new java.awt.Color(255, 255, 204));
         btnPlaceOrder.setText("PLACE ORDER");
         btnPlaceOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,9 +143,9 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblCartTotal.setText("jLabel1");
+        txtOrderMessage.setBackground(new java.awt.Color(255, 255, 204));
 
-        txtOrderMessage.setText("jTextField1");
+        jLabel1.setText("PLEASE ADD SPECIAL INSTRUCTION FOR YOUR ORDER:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -149,7 +156,7 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                        .addGap(227, 227, 227)
                         .addComponent(lblTitle)
                         .addGap(285, 285, 285))
                     .addGroup(layout.createSequentialGroup()
@@ -157,16 +164,16 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 891, Short.MAX_VALUE)
                             .addComponent(jScrollPane2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtOrderMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(142, 142, 142)
-                                .addComponent(lblCartTotal)
+                                .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnPlaceOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtOrderMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(btnPlaceOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(395, 395, 395)
                 .addComponent(btnAddToCart)
-                .addGap(371, 371, 371))
+                .addGap(395, 395, 395))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,16 +188,12 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
                 .addComponent(btnAddToCart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPlaceOrder)
-                            .addComponent(lblCartTotal)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(txtOrderMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPlaceOrder)
+                    .addComponent(txtOrderMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(178, 178, 178))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -260,9 +263,9 @@ public class PlaceOrderByCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAddToCart;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnPlaceOrder;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblCartTotal;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblMenu;
     private javax.swing.JTable tblOrder;

@@ -55,8 +55,11 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
         deliveryStaffTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         btnAssignDelivery = new javax.swing.JButton();
+        lblTitle = new javax.swing.JLabel();
 
-        deliveryStaffTable.setBackground(new java.awt.Color(204, 204, 204));
+        setBackground(new java.awt.Color(204, 255, 204));
+
+        deliveryStaffTable.setBackground(new java.awt.Color(255, 255, 204));
         deliveryStaffTable.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         deliveryStaffTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +86,7 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(deliveryStaffTable);
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 204));
         btnBack.setText("<<BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +94,7 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAssignDelivery.setBackground(new java.awt.Color(255, 255, 204));
         btnAssignDelivery.setText("ASSIGN");
         btnAssignDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,31 +102,40 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblTitle.setText("PLEASE ASIGN A DELIVERY MEMBER FROM THE LIST FOR YOUR ORDER ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(207, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAssignDelivery)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(217, 217, 217))
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(436, 436, 436)
+                        .addComponent(btnAssignDelivery))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(368, 368, 368)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(225, 225, 225))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTitle))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnAssignDelivery)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addGap(76, 76, 76))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,5 +190,6 @@ public class AssignDeliveryJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JTable deliveryStaffTable;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

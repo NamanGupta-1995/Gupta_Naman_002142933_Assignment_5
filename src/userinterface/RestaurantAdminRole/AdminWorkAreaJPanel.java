@@ -54,12 +54,14 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("WELCOME RESTAURANT ADMIN");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
+        userJButton.setBackground(new java.awt.Color(255, 255, 204));
         userJButton.setText("Manage Restaurant Info");
         userJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +70,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 230, -1));
 
+        btnManageMenu.setBackground(new java.awt.Color(255, 255, 204));
         btnManageMenu.setText("Manage menu");
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +79,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(btnManageMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 230, -1));
 
+        btnManageOrders.setBackground(new java.awt.Color(255, 255, 204));
         btnManageOrders.setText("Manage Orders");
         btnManageOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,8 +92,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel.setText("Restaurant :");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 120, 30));
 
+        valueLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 130, -1));
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 190, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed

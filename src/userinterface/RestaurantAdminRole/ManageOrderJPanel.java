@@ -74,6 +74,9 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         btnAssignDeliveryMan = new javax.swing.JButton();
         lblAssign = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 204));
+
+        orderTable.setBackground(new java.awt.Color(255, 255, 204));
         orderTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -102,6 +105,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(orderTable);
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 204));
         btnBack.setText("<< BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +116,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblTitle.setText("MANAGE YOUR ORDERS HERE");
 
+        btnAssignDeliveryMan.setBackground(new java.awt.Color(255, 255, 204));
         btnAssignDeliveryMan.setText("ASSIGN DELIVERY MAN");
         btnAssignDeliveryMan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,16 +138,14 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                         .addGap(210, 210, 210)
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(lblAssign)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAssignDeliveryMan)))
-                .addContainerGap(188, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(132, 132, 132)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(188, Short.MAX_VALUE)))
+                .addGap(194, 194, 194))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,16 +154,13 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(lblTitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAssignDeliveryMan)
-                    .addComponent(lblAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(234, 234, 234))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(132, 132, 132)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(279, Short.MAX_VALUE)))
+                    .addComponent(lblAssign, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssignDeliveryMan))
+                .addGap(263, 263, 263))
         );
     }// </editor-fold>//GEN-END:initComponents
 
