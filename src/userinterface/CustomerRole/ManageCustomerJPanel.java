@@ -86,9 +86,12 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(204, 255, 204));
+
         lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblTitle.setText("MANAGE CUSTOMER");
 
+        tblCustomer.setBackground(new java.awt.Color(255, 255, 204));
         tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -102,6 +105,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCustomer);
 
+        btnUpdateCustomer.setBackground(new java.awt.Color(255, 255, 204));
         btnUpdateCustomer.setText("Update Customer");
         btnUpdateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +113,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDeleteCustomer.setBackground(new java.awt.Color(255, 255, 204));
         btnDeleteCustomer.setText("Delete Customer");
         btnDeleteCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,14 +132,15 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
         lblEmail.setText("EMAIL:");
 
-        txtName.setText("jTextField1");
+        txtName.setBackground(new java.awt.Color(255, 255, 204));
 
-        txtAddress.setText("jTextField2");
+        txtAddress.setBackground(new java.awt.Color(255, 255, 204));
 
-        txtContact.setText("jTextField3");
+        txtContact.setBackground(new java.awt.Color(255, 255, 204));
 
-        txtEmail.setText("jTextField4");
+        txtEmail.setBackground(new java.awt.Color(255, 255, 204));
 
+        btnBack.setBackground(new java.awt.Color(255, 255, 204));
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +148,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnViewCustomer.setBackground(new java.awt.Color(255, 255, 204));
         btnViewCustomer.setText("View Customer");
         btnViewCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +158,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
         lblPassword.setText("PASSWORD:");
 
-        txtPassword.setText("jTextField1");
+        txtPassword.setBackground(new java.awt.Color(255, 255, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -161,27 +168,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(398, 398, 398)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEmail)
-                            .addComponent(btnUpdateCustomer)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblContact, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblAddress, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(lblUpdateCustomer))))
+                        .addComponent(lblEmail))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,14 +181,42 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnViewCustomer))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 847, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(373, 373, 373)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblContact, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblAddress, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblName, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(37, 37, 37)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtContact)
+                                        .addComponent(txtAddress)
+                                        .addComponent(txtEmail)
+                                        .addComponent(txtName)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(5, 5, 5)
+                                    .addComponent(lblUpdateCustomer))))))
+                .addGap(41, 41, 41))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lblPassword)
-                        .addGap(444, 444, 444)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addGap(485, 485, 485))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnUpdateCustomer)
+                        .addGap(385, 385, 385))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDeleteCustomer, btnViewCustomer});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtAddress, txtContact, txtEmail, txtName, txtPassword});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,22 +241,27 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAddress)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblContact, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtContact, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUpdateCustomer)
-                .addGap(48, 48, 48))
+                .addGap(52, 52, 52))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAddress, txtContact, txtEmail, txtName, txtPassword});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDeleteCustomer, btnViewCustomer});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCustomerActionPerformed

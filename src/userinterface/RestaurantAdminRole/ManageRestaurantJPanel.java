@@ -178,7 +178,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(lblPassword)
                         .addGap(444, 444, 444)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
