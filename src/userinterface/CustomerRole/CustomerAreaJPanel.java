@@ -61,7 +61,23 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     }
     
     public void populateRequestTable(){
+        DefaultTableModel model = (DefaultTableModel)tblOrderStatus.getModel();
         
+        model.setRowCount(0);
+        
+        for(WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            if(request.getReceiver() == null){
+                userAccount.getWorkQueue().getWorkRequestList().remove(request);
+                continue;
+            }
+            Object[] row = new Object[4];
+            row[0] = request.getMessage();
+            row[1] = request.getReceiver().getUsername();
+            row[2] = request.getDeliveryMan();
+            row[3] = request.getStatus();
+            
+            model.addRow(row);
+        }
     }
 
     
@@ -75,7 +91,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        workRequestJTable = new javax.swing.JTable();
+        tblOrderStatus = new javax.swing.JTable();
         lblCustomerTitle = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblRestaurant = new javax.swing.JTable();
@@ -84,8 +100,8 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(204, 255, 204));
 
-        workRequestJTable.setBackground(new java.awt.Color(255, 255, 204));
-        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrderStatus.setBackground(new java.awt.Color(255, 255, 204));
+        tblOrderStatus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,14 +109,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Message", "Restaurant", "Delivery Man", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -111,12 +127,11 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
-        if (workRequestJTable.getColumnModel().getColumnCount() > 0) {
-            workRequestJTable.getColumnModel().getColumn(0).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(1).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(2).setResizable(false);
-            workRequestJTable.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tblOrderStatus);
+        if (tblOrderStatus.getColumnModel().getColumnCount() > 0) {
+            tblOrderStatus.getColumnModel().getColumn(0).setResizable(false);
+            tblOrderStatus.getColumnModel().getColumn(1).setResizable(false);
+            tblOrderStatus.getColumnModel().getColumn(3).setResizable(false);
         }
 
         lblCustomerTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -170,10 +185,11 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                                 .addGap(16, 16, 16))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnSelectRestaurant)
-                        .addGap(365, 365, 365))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(278, 278, 278))))
+                        .addGap(365, 365, 365))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(181, 181, 181))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,9 +202,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSelectRestaurant)
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -229,7 +245,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCustomerTitle;
+    private javax.swing.JTable tblOrderStatus;
     private javax.swing.JTable tblRestaurant;
-    private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

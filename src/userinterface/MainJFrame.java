@@ -50,7 +50,7 @@ public class MainJFrame extends javax.swing.JFrame {
         loginJLabel = new javax.swing.JLabel();
         logoutJButton = new javax.swing.JButton();
         container = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,7 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(logoutJButton)
                 .addGap(22, 22, 22)
                 .addComponent(loginJLabel)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {loginJButton, logoutJButton});
@@ -132,7 +132,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
         container.setBackground(new java.awt.Color(204, 255, 204));
         container.setLayout(new java.awt.CardLayout());
-        container.add(jLabel3, "card2");
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/namangupta/Downloads/LeadDeliverySystem2.jpg")); // NOI18N
+        jLabel4.setAlignmentY(0.0F);
+        jLabel4.setMaximumSize(new java.awt.Dimension(500, 500));
+        jLabel4.setMinimumSize(new java.awt.Dimension(500, 500));
+        jLabel4.setSize(new java.awt.Dimension(50, 50));
+        container.add(jLabel4, "card3");
 
         jSplitPane1.setRightComponent(container);
 
@@ -212,7 +218,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton loginJButton;
