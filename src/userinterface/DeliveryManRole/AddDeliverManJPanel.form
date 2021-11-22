@@ -6,6 +6,9 @@
       <Color blue="cc" green="ff" red="cc" type="rgb"/>
     </Property>
   </Properties>
+  <Events>
+    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="formKeyReleased"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -21,48 +24,52 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDeliveryManName" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDeliveryVehicle" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDeliveryManContact" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDeliveryEmail" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtName" linkSize="1" alignment="1" pref="86" max="32767" attributes="0"/>
-                              <Component id="txtVehicleNumber" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblPassword" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDeliveryManName" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDeliveryVehicle" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDeliveryManContact" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDeliveryEmail" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="txtName" linkSize="1" alignment="1" pref="86" max="32767" attributes="0"/>
+                                      <Component id="txtVehicleNumber" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtEmail" linkSize="1" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="txtContact" linkSize="1" min="-2" pref="86" max="-2" attributes="0"/>
+                                  <Component id="txtPassword" linkSize="1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblVehicleError" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblContactError" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEmailError" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="txtEmail" linkSize="1" min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="txtContact" linkSize="1" min="-2" pref="86" max="-2" attributes="0"/>
-                          <Component id="txtPassword" linkSize="1" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblNameError" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblVehicleError" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblContactError" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmailError" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="btnAddDeliveryMan" min="-2" pref="148" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="btnAddDeliveryMan" min="-2" pref="148" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
+                      <Component id="lblAddCustomer" min="-2" pref="194" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
-              <Component id="lblAddCustomer" min="-2" pref="194" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblNameError" min="-2" pref="112" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,7 +87,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblDeliveryManName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNameError" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNameError" alignment="3" min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -132,6 +139,9 @@
           <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNameKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDeliveryVehicle">
       <Properties>
@@ -156,6 +166,9 @@
           <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContactKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDeliveryEmail">
       <Properties>
@@ -184,10 +197,16 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNameError">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lblNameErrorKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblVehicleError">
     </Component>
     <Component class="javax.swing.JLabel" name="lblContactError">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lblContactErrorKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmailError">
     </Component>

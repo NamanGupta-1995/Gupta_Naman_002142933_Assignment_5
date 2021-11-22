@@ -13,6 +13,8 @@ import Business.Employee.Employee;
 import Business.Role.CustomerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
@@ -73,6 +75,11 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         lblCustomerName.setText("NAME:");
 
         txtName.setBackground(new java.awt.Color(255, 255, 204));
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
 
         lblCustomerAddress.setText("ADDRESS:");
 
@@ -81,6 +88,11 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         lblCustomerContact.setText("CONTACT NUMBER:");
 
         txtContact.setBackground(new java.awt.Color(255, 255, 204));
+        txtContact.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContactKeyReleased(evt);
+            }
+        });
 
         lblCustomerEmail.setText("EMAIL ID:");
 
@@ -118,9 +130,9 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
                                 .addComponent(btnBack)
                                 .addGap(90, 90, 90)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -130,22 +142,20 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lblAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblCustomerAddress, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblCustomerContact, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblCustomerEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                                            .addComponent(txtContact)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(60, 60, 60)
-                                        .addComponent(btnAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblCustomerAddress, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblCustomerContact, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblCustomerEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                                        .addComponent(txtContact)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(60, 60, 60)
+                                    .addComponent(btnAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(4, 4, 4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -209,6 +219,8 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         // TODO add your handling code here:
+        if(checkFormValidity()){
+        
         Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee(txtName.getText());
         
         Customer customer = new Customer();
@@ -226,6 +238,10 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         this.ecosystem.setCustomerDirectory(customerDirectory);
         JOptionPane.showMessageDialog(this, "Customer Added", "Update", JOptionPane.INFORMATION_MESSAGE);
         clearFields();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please resolve all errors and fill all the fields", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -238,6 +254,39 @@ public class AddCustomerJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer); 
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void txtContactKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactKeyReleased
+        // TODO add your handling code here:
+        Pattern patt=Pattern.compile("^[0-9]{10}{12}$");
+        Matcher match=patt.matcher(txtContact.getText());
+        if (!match.matches()) {
+            lblContactError.setText("Number should be 10 digits");
+        }else{
+            lblContactError.setText("");
+        }
+    }//GEN-LAST:event_txtContactKeyReleased
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        Pattern patt=Pattern.compile("^[a-zA-Z ]{0,40}$");
+        Matcher match=patt.matcher(txtName.getText());
+        if (!match.matches()) {
+            lblNameError.setText("You can only use alphabets(a-z) and maximum length is 40");
+        }else{
+            lblNameError.setText("");
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private Boolean checkFormValidity(){
+        if(txtAddress.getText().length() != 0 && txtContact.getText().length() != 0 && txtEmail.getText().length() != 0 
+                && txtName.getText().length() != 0 && txtPassword.getText().length() != 0 && lblNameError.getText().length() == 0
+                && lblContactError.getText().length() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     public void clearFields(){
         txtName.setText("");
         txtAddress.setText("");

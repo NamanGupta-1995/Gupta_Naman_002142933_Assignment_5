@@ -24,9 +24,9 @@
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -39,26 +39,23 @@
                                   <Component id="lblAddCustomer" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblCustomerAddress" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblCustomerContact" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblCustomerEmail" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblPassword" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtAddress" linkSize="1" pref="81" max="32767" attributes="0"/>
-                                          <Component id="txtContact" linkSize="1" max="32767" attributes="0"/>
-                                      </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblCustomerAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCustomerContact" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCustomerEmail" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblPassword" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                      <Component id="btnAddCustomer" min="-2" pref="148" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtAddress" linkSize="1" pref="81" max="32767" attributes="0"/>
+                                      <Component id="txtContact" linkSize="1" max="32767" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                  <Component id="btnAddCustomer" min="-2" pref="148" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -147,6 +144,9 @@
           <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNameKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCustomerAddress">
       <Properties>
@@ -171,6 +171,9 @@
           <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContactKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCustomerEmail">
       <Properties>

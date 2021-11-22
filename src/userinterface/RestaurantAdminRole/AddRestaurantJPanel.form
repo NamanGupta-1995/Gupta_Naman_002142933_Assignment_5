@@ -34,13 +34,19 @@
                       </Group>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtContactNumber" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtEmail" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtName" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtAddress" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txtEmail" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAddress" linkSize="1" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtPassword" linkSize="1" min="-2" pref="82" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtContactNumber" linkSize="1" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="lblContactError" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="txtName" linkSize="1" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="lblNameError" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -54,7 +60,7 @@
                       <Component id="lblTitle" min="-2" pref="240" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="293" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,6 +76,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNameError" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -80,6 +87,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblContact" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtContactNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblContactError" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -138,6 +146,9 @@
           <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNameKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAddress">
       <Properties>
@@ -152,6 +163,9 @@
           <Color blue="cc" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContactNumberKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
       <Properties>
@@ -187,6 +201,16 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblContactError">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lblContactErrorKeyReleased"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNameError">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lblNameErrorKeyReleased"/>
       </Events>
     </Component>
   </SubComponents>

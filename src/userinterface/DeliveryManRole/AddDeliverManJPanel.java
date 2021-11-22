@@ -11,6 +11,8 @@ import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
 import Business.Role.DeliverManRole;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
@@ -64,6 +66,11 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
         txtPassword = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 255, 204));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formKeyReleased(evt);
+            }
+        });
 
         lblAddCustomer.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblAddCustomer.setText("ADD DELIVERY MAN");
@@ -71,6 +78,11 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
         lblDeliveryManName.setText("NAME:");
 
         txtName.setBackground(new java.awt.Color(255, 255, 204));
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
 
         lblDeliveryVehicle.setText("VEHICLE NUMBER");
 
@@ -79,6 +91,11 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
         lblDeliveryManContact.setText("CONTACT NUMBER:");
 
         txtContact.setBackground(new java.awt.Color(255, 255, 204));
+        txtContact.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContactKeyReleased(evt);
+            }
+        });
 
         lblDeliveryEmail.setText("EMAIL ID:");
 
@@ -94,6 +111,18 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
         btnAddDeliveryMan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddDeliveryManActionPerformed(evt);
+            }
+        });
+
+        lblNameError.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblNameErrorKeyReleased(evt);
+            }
+        });
+
+        lblContactError.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblContactErrorKeyReleased(evt);
             }
         });
 
@@ -114,39 +143,41 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(346, 346, 346)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPassword)
-                            .addComponent(lblDeliveryManName)
-                            .addComponent(lblDeliveryVehicle)
-                            .addComponent(lblDeliveryManContact)
-                            .addComponent(lblDeliveryEmail))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                                .addComponent(txtVehicleNumber, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword))
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblNameError)
-                            .addComponent(lblVehicleError)
-                            .addComponent(lblContactError)
-                            .addComponent(lblEmailError)))
+                        .addGap(346, 346, 346)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPassword)
+                                    .addComponent(lblDeliveryManName)
+                                    .addComponent(lblDeliveryVehicle)
+                                    .addComponent(lblDeliveryManContact)
+                                    .addComponent(lblDeliveryEmail))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                                        .addComponent(txtVehicleNumber, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPassword))
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblVehicleError)
+                                    .addComponent(lblContactError)
+                                    .addComponent(lblEmailError)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(btnAddDeliveryMan, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(btnAddDeliveryMan, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(304, 304, 304))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(btnBack)
-                .addGap(270, 270, 270)
-                .addComponent(lblAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)
+                        .addComponent(btnBack)
+                        .addGap(270, 270, 270)
+                        .addComponent(lblAddCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(142, 142, 142))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtContact, txtEmail, txtName, txtPassword, txtVehicleNumber});
@@ -163,7 +194,7 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDeliveryManName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNameError))
+                    .addComponent(lblNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDeliveryVehicle)
@@ -195,6 +226,7 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
 
     private void btnAddDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDeliveryManActionPerformed
         // TODO add your handling code here:
+        if(checkFormValidity()){
         Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee("RRH");
 
         DeliveryMan deliveryMan = new DeliveryMan();
@@ -210,6 +242,10 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
         this.ecosystem.getUserAccountDirectory().createUserAccount(txtEmail.getText(), txtPassword.getText(), employee, new DeliverManRole());
         JOptionPane.showMessageDialog(this, "Delivery Man Added", "Update", JOptionPane.INFORMATION_MESSAGE);
         clearFields();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please resolve all errors and fill all the fields", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddDeliveryManActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -222,12 +258,59 @@ public class AddDeliverManJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void lblNameErrorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblNameErrorKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_lblNameErrorKeyReleased
+
+    private void lblContactErrorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblContactErrorKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_lblContactErrorKeyReleased
+
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyReleased
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        Pattern patt=Pattern.compile("^[a-zA-Z ]{0,40}$");
+        Matcher match=patt.matcher(txtName.getText());
+        if (!match.matches()) {
+            lblNameError.setText("You can only use alphabets(a-z) and maximum length is 40");
+        }else{
+            lblNameError.setText("");
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtContactKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactKeyReleased
+        // TODO add your handling code here:
+        Pattern patt=Pattern.compile("^[0-9]{10}{12}$");
+        Matcher match=patt.matcher(txtContact.getText());
+        if (!match.matches()) {
+            lblContactError.setText("Number should be 10 digits");
+        }else{
+            lblContactError.setText("");
+        }
+    }//GEN-LAST:event_txtContactKeyReleased
+
     public void clearFields(){
         txtName.setText("");
         txtVehicleNumber.setText("");
         txtContact.setText("");
         txtEmail.setText("");
         txtPassword.setText("");
+    }
+    
+    private Boolean checkFormValidity(){
+        if(txtVehicleNumber.getText().length() != 0 && txtContact.getText().length() != 0 && txtEmail.getText().length() != 0 
+                && txtName.getText().length() != 0 && txtPassword.getText().length() != 0 && lblNameError.getText().length() == 0
+                && lblContactError.getText().length() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
         
 

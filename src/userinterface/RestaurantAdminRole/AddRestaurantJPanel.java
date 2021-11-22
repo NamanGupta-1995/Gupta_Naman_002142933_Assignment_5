@@ -12,6 +12,8 @@ import Business.Restaurant.RestaurantDirectory;
 import Business.Role.AdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
@@ -60,6 +62,8 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         txtPassword = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblContactError = new javax.swing.JLabel();
+        lblNameError = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 204));
 
@@ -77,10 +81,20 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         lblPassword.setText("PASSWORD:");
 
         txtName.setBackground(new java.awt.Color(255, 255, 204));
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
 
         txtAddress.setBackground(new java.awt.Color(255, 255, 204));
 
         txtContactNumber.setBackground(new java.awt.Color(255, 255, 204));
+        txtContactNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtContactNumberKeyReleased(evt);
+            }
+        });
 
         txtEmail.setBackground(new java.awt.Color(255, 255, 204));
 
@@ -102,6 +116,18 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblContactError.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblContactErrorKeyReleased(evt);
+            }
+        });
+
+        lblNameError.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                lblNameErrorKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,12 +144,17 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                             .addComponent(lblName))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtEmail)
+                            .addComponent(txtAddress)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtContactNumber)
-                                .addComponent(txtEmail)
+                                .addGap(60, 60, 60)
+                                .addComponent(lblContactError))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtName)
-                                .addComponent(txtAddress))
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(41, 41, 41)
+                                .addComponent(lblNameError))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(199, 199, 199)
                         .addComponent(btnAdd))
@@ -132,7 +163,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                         .addComponent(btnBack)
                         .addGap(45, 45, 45)
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(293, 293, 293))
+                .addGap(185, 185, 185))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtAddress, txtContactNumber, txtEmail, txtName, txtPassword});
@@ -147,7 +178,8 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblName)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNameError))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAddress)
@@ -155,7 +187,8 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContact)
-                    .addComponent(txtContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblContactError))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEmail)
@@ -172,7 +205,7 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        
+        if(checkFormValidity()){
         Employee employee = this.ecosystem.getEmployeeDirectory().createEmployee(txtName.getText());
         
         Restaurant restaurant = new Restaurant();
@@ -189,6 +222,10 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         this.ecosystem.setRestaurantDirectory(restaurantDirectory);
         JOptionPane.showMessageDialog(this, "Restaurant Added", "Update", JOptionPane.INFORMATION_MESSAGE);
         clearFields();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please resolve all errors and fill all the fields", "Error", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -200,6 +237,49 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer); 
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void lblContactErrorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblContactErrorKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_lblContactErrorKeyReleased
+
+    private void lblNameErrorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lblNameErrorKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_lblNameErrorKeyReleased
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        // TODO add your handling code here:
+        Pattern patt=Pattern.compile("^[a-zA-Z ]{0,40}$");
+        Matcher match=patt.matcher(txtName.getText());
+        if (!match.matches()) {
+            lblNameError.setText("You can only use alphabets(a-z) and maximum length is 40");
+        }else{
+            lblNameError.setText("");
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtContactNumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactNumberKeyReleased
+        // TODO add your handling code here:
+        Pattern patt=Pattern.compile("^[0-9]{10}{12}$");
+        Matcher match=patt.matcher(txtContactNumber.getText());
+        if (!match.matches()) {
+            lblContactError.setText("Number should be 10 digits");
+        }else{
+            lblContactError.setText("");
+        }
+    }//GEN-LAST:event_txtContactNumberKeyReleased
+
+    private Boolean checkFormValidity(){
+        if(txtAddress.getText().length() != 0 && txtContactNumber.getText().length() != 0 && txtEmail.getText().length() != 0 
+                && txtName.getText().length() != 0 && txtPassword.getText().length() != 0 && lblNameError.getText().length() == 0
+                && lblContactError.getText().length() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+        
     public void clearFields(){
         txtName.setText("");
         txtAddress.setText("");
@@ -213,8 +293,10 @@ public class AddRestaurantJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblContact;
+    private javax.swing.JLabel lblContactError;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblNameError;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtAddress;
